@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="">
+  <div>
     <div class="gameStatus" :class="gameStatusColor">
       {{ gameStatusMessage }}
     </div>
@@ -10,37 +10,12 @@
 </template>
 
 <script>
-import Cell from "./Cell.vue";
 import EventBus from "../eventBus.js";
+import Cell from "./Cell.vue";
 export default {
   name: "Grid",
   components: {
     Cell
-  },
-  data() {
-    return {
-      activePlayer: "O",
-      gameStatus: "turn",
-      gameStatusMessage: "O's Turn",
-      gameStatusColor: "statusTurn",
-      moves: 0,
-      winConditions: [
-        // eslint-disable-next-line
-        [1, 2, 3],[4, 5, 6],[7, 8, 9], // rows
-        // eslint-disable-next-line
-        [1, 4, 7],[2, 5, 8],[3, 6, 9], // columns
-        // eslint-disable-next-line
-        [1, 5, 9],[3, 5, 7] // diagonals
-      ],
-      cells: {
-        // eslint-disable-next-line
-        1: "", 2: "", 3: "",
-        // eslint-disable-next-line
-        4: "", 5: "", 6: "",
-        // eslint-disable-next-line
-        7: "", 8: "", 9: ""
-      }
-    };
   },
   computed: {
     nonActivePlayer() {
@@ -57,9 +32,9 @@ export default {
     },
     checkForWin() {
       let cells = this.cells;
-      return this.winConditions.some(condition => {
+      return this.winConditions.some(conditon => {
         let count = 0;
-        condition.forEach(cell => {
+        conditon.forEach(cell => {
           if (cells[cell] === this.activePlayer) {
             count++;
           }
@@ -96,17 +71,43 @@ export default {
       Object.assign(this.$data, this.$options.data());
     });
   },
+  data() {
+    return {
+      activePlayer: "O",
+      gameStatus: "turn",
+      gameStatusMessage: "O's Turn",
+      gameStatusColor: "statusTurn",
+      moves: 0,
+      winConditions: [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9], // rows
+        [1, 4, 7],
+        [2, 5, 8],
+        [3, 6, 9], // columns
+        [1, 5, 9],
+        [3, 5, 7] // diagonals
+      ],
+      cells: {
+        1: "",
+        2: "",
+        3: "",
+        4: "",
+        5: "",
+        6: "",
+        7: "",
+        8: "",
+        9: ""
+      }
+    };
+  },
   watch: {
     gameStatus() {
       if (this.gameStatus === "win") {
         this.gameStatusColor = "statusWin";
-        console.log(this.activePlayer);
-        this.gameStatusMessage = `${this.activePlayer} Wins`;
-        return;
       } else if (this.gameStatus === "draw") {
         this.gameStatusColor = "statusDraw";
-        this.gameStatusMessage = `there's no winner`;
-        return;
+        this.gameStatusMessage = "There's no winner";
       }
     }
   }
@@ -119,11 +120,11 @@ export default {
   grid-template-columns: 120px 120px 120px;
   grid-gap: 10px;
   background-color: #34495e;
-  color: #fff;
+  color: white;
   width: 100%;
+  position: relative;
   padding: 10px;
   box-sizing: border-box;
-  position: relative;
 }
 
 .gameStatus {
@@ -132,7 +133,7 @@ export default {
   border-top-right-radius: 50px;
   font-size: 2em;
   font-weight: 800;
-  color: white;
+  color: #fff;
 }
 
 .statusTurn {

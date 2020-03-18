@@ -7,29 +7,31 @@
 <script>
 import EventBus from "../eventBus.js";
 export default {
-  props: ["marker"],
   name: "Cell",
+  props: ["marker"],
   data() {
     return {
-      canPlaceMark: false,
-      mark: ""
+      mark: "",
+      canPlaceMark: true
     };
-  },
-  created() {
-    EventBus.$on("freeze", () => (this.canPlaceMark = true));
-    EventBus.$on("clearCells", () => {
-      this.mark = "";
-      this.canPlaceMark = false;
-    });
   },
   methods: {
     shot() {
-      if (!this.canPlaceMark) {
+      if (this.canPlaceMark) {
         this.mark = this.$parent.activePlayer;
-        this.canPlaceMark = true;
+        this.canPlaceMark = false;
         EventBus.$emit("shot", this.marker);
       }
     }
+  },
+  created() {
+    EventBus.$on("freeze", () => {
+      this.canPlaceMark = false;
+    });
+    EventBus.$on("clearCells", () => {
+      this.mark = "";
+      this.canPlaceMark = true;
+    });
   }
 };
 </script>

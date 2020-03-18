@@ -21,27 +21,27 @@ This Projects inspired from [tic-tac-toe-game](https://github.com/shammadahmed/t
 * [×] Create the grid component & styling it
 * [×] Create the cell component & styling it
 * [×] Specify Data Properties (APP)
-  - Number of matches
-  - Number of wins for each player
+  * Number of matches
+  * Number of wins for each player
 * [×] Specify Data Properties (GRID)
-  - Active Player (X or O)
-  - Game Status (turn - win - draw)
-  - Status Message ( O's turn / X's turn )
-  - Status Color
-    - statusTurn (default) is yellow for a turn
-    - statusWin is green for a win
-    - statusDraw is gray for a draw
-  - Number of moves played by both players  (max=9)
-  - Winning Conditions
-  - Mark placement for each cell
+  * Active Player (X or O)
+  * Game Status (turn - win - draw)
+  * Status Message ( O's turn / X's turn )
+  * Status Color
+    * statusTurn (default) is yellow for a turn
+    * statusWin is green for a win
+    * statusDraw is gray for a draw
+  * Number of moves played by both players  (max=9)
+  * Winning Conditions
+  * Mark placement for each cell
 * [×] Specify Data Properties (CELL)
 * [×] Event Bus
 * [×] Start game (Listening For shots)
-  - listen to 'shot' event
-  - fill the respective cell number with the mark in the cells object
-  - increment the number of moves
-  - change the game status and change the active player
-  - Check game status
+  * listen to 'shot' event
+  * fill the respective cell number with the mark in the cells object
+  * increment the number of moves
+  * change the game status and change the active player
+  * Check game status
 * [×] Displaying the Status
 * [×] Checking for a Win
 * [×] Scoreboard
@@ -49,21 +49,25 @@ This Projects inspired from [tic-tac-toe-game](https://github.com/shammadahmed/t
 * [×] Number of Matches
 
 ## Project setup
-```
+
+```bash
 npm install
 ```
 
 ### Compiles and hot-reloads for development
-```
+
+```bash
 npm run serve
 ```
 
 ### Compiles and minifies for production
-```
+
+```bash
 npm run build
 ```
 
 ### Lints and fixes files
-```
+
+```bash
 npm run lint
 ```

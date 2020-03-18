@@ -4,7 +4,7 @@
     <h2 class="statistics">
       <span class="playerNames">X</span> has
       <span class="results">{{ wins["X"] }}</span> wins | Match
-      <span class="results">#{{ matches + 1 }}</span> |
+      <span class="results">{{ matches + 1 }}</span> |
       <span class="playerNames">O</span> has
       <span class="results">{{ wins["O"] }}</span> wins
     </h2>
@@ -30,22 +30,22 @@ export default {
       }
     };
   },
-  created() {
-    EventBus.$on("win", winner => this.wins[winner]++);
-  },
   methods: {
     restart() {
       EventBus.$emit("clearCells");
       EventBus.$emit("resetGrid");
       this.matches++;
     }
+  },
+  created() {
+    EventBus.$on("win", winner => this.wins[winner]++);
   }
 };
 </script>
 
 <style>
 #app {
-  font-family: "Dosis", Helvetica, sans-serif;
+  font-family: "Dosis", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -60,32 +60,31 @@ export default {
   font-size: 3em;
 }
 
-#app button {
+.restart {
   width: 100%;
   margin: 0;
-  background: #ff5722;
+  background-color: #ff5722;
+  border: none;
   color: white;
-  border: navajowhite;
   padding: 20px 0;
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
-  font-size: 2em;
   font-weight: 800;
   cursor: pointer;
   outline: none;
+  font-size: 2em;
 }
 
 .statistics {
   font-weight: 400;
 }
-
 .statistics .results {
   color: #00bcd4;
   font-weight: 800;
 }
 
 .statistics .playerNames {
-  color: #2c3e50;
   text-decoration: underline;
+  color: #2c3e50;
 }
 </style>
